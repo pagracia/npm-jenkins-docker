@@ -15,12 +15,14 @@ pipeline {
                 sh 'npm install express --save'
             }
         }
-/*        stage('Test') {
+        stage('Build Image') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                script {
+                    def customImage = docker.build("simple-node")
+                }
             }
         }
-        stage('Deliver') {
+        /*stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
